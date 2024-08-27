@@ -91,19 +91,21 @@ void writeToFile(const std::string& filename, const std::string& fileToWriteName
 }
 
 int main(int argc, char* argv[]) {
-    if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " <filename> <outputFilename>" << std::endl;
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <filename> " << std::endl;
         return 1;
     }
 
     std::string filename = argv[1];
-    std::string outputFilename = argv[2];
     std::vector<double> data = readHexArrayFromFile(filename);
 
     if (!data.empty()) {
         double entropy = calculateEntropy(data);
         std::cout << "Entropy: " << entropy << std::endl;
-        writeToFile(outputFilename, filename, static_cast<int>(totalElements), entropy);
+        if(argc > 2){
+	    std::string outputFilename = argv[2];
+	    writeToFile(outputFilename, filename, static_cast<int>(totalElements), entropy);
+	}
     } else {
         std::cout << "The file contains no data." << std::endl;
     }

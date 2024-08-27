@@ -47,12 +47,12 @@ def write_to_file(filename, original_filename, seeds_number, entropy):
         sys.exit(1)
 
 def main():
-    if len(sys.argv) < 3:
-        print(f"Usage: {sys.argv[0]} <inputFilename> <outputFilename>")
+    if len(sys.argv) < 2:
+        print(f"Usage: {sys.argv[0]} <inputFilename> ")
         sys.exit(1)
 
     input_filename = sys.argv[1]
-    output_filename = sys.argv[2]
+    
 
     # Read hex values and calculate entropy
     float_values = read_hex_values_from_file(input_filename)
@@ -61,7 +61,9 @@ def main():
         print(f"Entropy: {entropy}")
 
         # Write the results to the output file
-        write_to_file(output_filename, input_filename, total_values, entropy)
+        if len(sys.argv) > 2:
+            output_filename = sys.argv[2]
+            write_to_file(output_filename, input_filename, total_values, entropy)
     else:
         print("The file contains no data.")
         sys.exit(1)
