@@ -1,4 +1,4 @@
-# Entropy Calculator
+![image](https://github.com/user-attachments/assets/0be9af1a-991d-4f16-84b9-61e0fddd1bd5)# Entropy Calculator
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c3feb796-f6c6-4b30-befd-95c9b8f09255" alt="Image" height="200">
@@ -103,7 +103,7 @@ python3 main.py data.txt
 The program will read the `data.txt` file, compute the entropy, and display the result in the terminal. The output might look something like:
 
 ```
-Entropy: 4.357
+Entropy: 2.32193
 ```
 
 This value represents the amount of randomness or uncertainty in the dataset.
@@ -127,8 +127,8 @@ python3 main.py data.txt output.csv
 In this example, the entropy will be calculated and saved in `output.csv` in the following format:
 
 ```csv
-Date,Time,FileName,Entropy
-2024-08-27,13:22:00,data.txt,4.357
+Date,Time,FileName,SeedsNumber,Entropy
+2024-08-27,17:08:23,test,5,2.32193
 ```
 
 This allows you to keep a record of entropy calculations across multiple files, which can be particularly useful for batch processing or historical analysis.
