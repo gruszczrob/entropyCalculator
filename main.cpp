@@ -10,8 +10,8 @@
 double totalElements;
 
 // Function to calculate entropy
-double calculateEntropy(const std::vector<double>& array) {
-    std::unordered_map<double, int> frequencyMap;
+double calculateEntropy(const std::vector<std::string>& array) {
+    std::unordered_map<std::string, int> frequencyMap;
 
     // Calculate frequency of each unique element in the array
     for (const auto& value : array) {
@@ -31,8 +31,8 @@ double calculateEntropy(const std::vector<double>& array) {
 }
 
 // Function to read data from a file
-std::vector<double> readHexArrayFromFile(const std::string& filename) {
-    std::vector<double> array;
+std::vector<std::string> readArrayFromFile(const std::string& filename) {
+    std::vector<std::string> array;
     std::ifstream file(filename);
 
     if (file.is_open()) {
@@ -41,11 +41,7 @@ std::vector<double> readHexArrayFromFile(const std::string& filename) {
             if (line.empty()) {
                 continue;
             }
-            std::stringstream ss;
-            ss << std::hex << line;
-            unsigned int value;
-            ss >> value;
-            array.push_back(static_cast<double>(value));
+            array.push_back(line);
         }
         file.close();
     } else {
@@ -97,7 +93,7 @@ int main(int argc, char* argv[]) {
     }
 
     std::string filename = argv[1];
-    std::vector<double> data = readHexArrayFromFile(filename);
+    std::vector<std::string> data = readArrayFromFile(filename);
 
     if (!data.empty()) {
         double entropy = calculateEntropy(data);

@@ -3,19 +3,19 @@ from collections import Counter
 import math
 from datetime import datetime
 
-def calculate_entropy(float_values):
-    """Calculate the entropy of the provided list of float values."""
-    frequency = Counter(float_values)
-    total_values = len(float_values)
+def calculate_entropy(values):
+    """Calculate the entropy of the provided list of values."""
+    frequency = Counter(values)
+    total_values = len(values)
     entropy = -sum((count / total_values) * math.log2(count / total_values) for count in frequency.values())
     return entropy, total_values
 
-def read_hex_values_from_file(filename):
-    """Read hex values from a file and convert them to floats."""
+def read_values_from_file(filename):
+    """Read values from a file and convert them to floats."""
     try:
         with open(filename, "r") as file:
-            float_values = [float(int(line, 16)) for line in file if line.strip()]
-        return float_values
+            values = [line for line in file if line.strip()]
+        return values
     except FileNotFoundError:
         print(f"Could not open the file {filename}")
         sys.exit(1)
@@ -55,7 +55,7 @@ def main():
     
 
     # Read hex values and calculate entropy
-    float_values = read_hex_values_from_file(input_filename)
+    float_values = read_values_from_file(input_filename)
     if float_values:
         entropy, total_values = calculate_entropy(float_values)
         print(f"Entropy: {entropy}")
