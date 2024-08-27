@@ -4,8 +4,7 @@
   <img src="https://github.com/user-attachments/assets/c3feb796-f6c6-4b30-befd-95c9b8f09255" alt="Image" height="200">
 </p>
 
-
-**Entropy Calculator** is an open-source tool designed to calculate the entropy of hexadecimal data stored in a file. This project is implemented in both Python and C++, providing flexibility and convenience for users who prefer either language. The program is ready to use immediately after compiling (for the C++ version) or executing (for the Python version) and is designed to be simple yet efficient.
+**Entropy Calculator** is an open-source tool designed to calculate the entropy of data stored in a file. This project is implemented in both Python and C++, providing flexibility and convenience for users who prefer either language. The program is ready to use immediately after compiling (for the C++ version) or executing (for the Python version) and is designed to be simple yet efficient.
 
 ## Table of Contents
 
@@ -23,7 +22,7 @@
 
 ## How It Works
 
-The Entropy Calculator processes a file containing hexadecimal numbers, where each number is expected to be on a separate line. The program reads these numbers, computes the entropy based on the probability distribution of the different hex values, and then displays the entropy value directly in the terminal. Additionally, the tool provides an option to save the computed entropy to a CSV file, which can be useful for further data analysis or record-keeping.
+The Entropy Calculator processes a file containing any type of data—hexadecimal numbers, strings, special characters, or numbers in various notations—where each entry is expected to be on a separate line. The program reads these lines, computes the entropy based on the probability distribution of the different values, and then displays the entropy value directly in the terminal. Additionally, the tool provides an option to save the computed entropy to a CSV file, which can be useful for further data analysis or record-keeping.
 
 This tool is particularly useful for analyzing the randomness or information content of data, which can be crucial in fields such as cryptography, data compression, and information theory.
 
@@ -63,7 +62,7 @@ To use the C++ version of Entropy Calculator, follow these steps:
    ./main [FILE NAME]
    ```
 
-   Replace `[FILE NAME]` with the actual name of your file containing hexadecimal data.
+   Replace `[FILE NAME]` with the actual name of your file containing data.
 
 ### Python Version
 
@@ -77,13 +76,14 @@ Again, replace `[FILE NAME]` with the actual path to your data file.
 
 ## Example Usage
 
-Suppose you have a file named `data.txt` containing hexadecimal numbers like this:
+Suppose you have a file named `data.txt` containing various data entries like this:
 
 ```
 A1
 FF
-0C
-B3
+HelloWorld
+12345
+!@#$
 ```
 
 You can calculate the entropy by running the following commands:
@@ -103,7 +103,7 @@ python3 main.py data.txt
 The program will read the `data.txt` file, compute the entropy, and display the result in the terminal. The output might look something like:
 
 ```
-Entropy: 3.459
+Entropy: 4.357
 ```
 
 This value represents the amount of randomness or uncertainty in the dataset.
@@ -127,8 +127,8 @@ python3 main.py data.txt output.csv
 In this example, the entropy will be calculated and saved in `output.csv` in the following format:
 
 ```csv
-Date,Time,FileName,SeedsNumber,Entropy
-2024-08-27,13:22:00,data.txt,3.459
+Date,Time,FileName,Entropy
+2024-08-27,13:22:00,data.txt,4.357
 ```
 
 This allows you to keep a record of entropy calculations across multiple files, which can be particularly useful for batch processing or historical analysis.
