@@ -33,7 +33,10 @@ std::vector<double> readHexArrayFromFile(const std::string& filename) {
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {
-            std::stringstream ss;
+	    if (line.empty()) {
+                continue;
+            }
+	    std::stringstream ss;
             ss << std::hex << line;
             unsigned int value;
             ss >> value;

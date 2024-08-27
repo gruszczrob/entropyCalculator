@@ -7,30 +7,18 @@ def main():
         print(f"Usage: {sys.argv[0]} <filename>")
         sys.exit(1)
 
-    filename = sys.argv[1]
-
     try:
-        # Read the content of the file
-        with open(filename, "r") as file:
-            hex_values = file.read().splitlines()
+        with open(sys.argv[1], "r") as file:
+            float_values = [float(int(line, 16)) for line in file if line.strip()]
 
-        # Convert hex values to float
-        float_values = [float(int(value, 16)) for value in hex_values]
-
-        # Calculate the frequency of each value
         frequency = Counter(float_values)
-
-        # Calculate the total number of values
         total_values = len(float_values)
-
-        # Calculate the entropy
         entropy = -sum((count / total_values) * math.log2(count / total_values) for count in frequency.values())
 
-        # Print the entropy
         print(f"Entropy: {entropy}")
 
     except FileNotFoundError:
-        print(f"Could not open the file {filename}")
+        print(f"Could not open the file {sys.argv[1]}")
         sys.exit(1)
 
 if __name__ == "__main__":
