@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0be9af1a-991d-4f16-84b9-61e0fddd1bd5)# Entropy Calculator
+# Entropy Calculator
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c3feb796-f6c6-4b30-befd-95c9b8f09255" alt="Image" height="200">
