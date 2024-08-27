@@ -1,5 +1,10 @@
 # Entropy Calculator
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c3feb796-f6c6-4b30-befd-95c9b8f09255" alt="Image" height="200">
+</p>
+
+
 **Entropy Calculator** is an open-source tool designed to calculate the entropy of hexadecimal data stored in a file. This project is implemented in both Python and C++, providing flexibility and convenience for users who prefer either language. The program is ready to use immediately after compiling (for the C++ version) or executing (for the Python version) and is designed to be simple yet efficient.
 
 ## Table of Contents
@@ -10,6 +15,7 @@
   - [C++ Version](#c-version)
   - [Python Version](#python-version)
 - [Example Usage](#example-usage)
+- [Saving Results to CSV](#saving-results-to-csv)
 - [License](#license)
 - [Contributing](#contributing)
 - [Author](#author)
@@ -17,7 +23,9 @@
 
 ## How It Works
 
-The Entropy Calculator processes a file containing hexadecimal numbers, where each number is expected to be on a separate line. The program reads these numbers, computes the entropy based on the probability distribution of the different hex values, and then displays the entropy value directly in the terminal. This tool is particularly useful for analyzing the randomness or information content of data, which can be crucial in fields such as cryptography, data compression, and information theory.
+The Entropy Calculator processes a file containing hexadecimal numbers, where each number is expected to be on a separate line. The program reads these numbers, computes the entropy based on the probability distribution of the different hex values, and then displays the entropy value directly in the terminal. Additionally, the tool provides an option to save the computed entropy to a CSV file, which can be useful for further data analysis or record-keeping.
+
+This tool is particularly useful for analyzing the randomness or information content of data, which can be crucial in fields such as cryptography, data compression, and information theory.
 
 ## System Requirements
 
@@ -99,6 +107,31 @@ Entropy: 3.459
 ```
 
 This value represents the amount of randomness or uncertainty in the dataset.
+
+## Saving Results to CSV
+
+The Entropy Calculator also offers the option to save the computed entropy to a CSV file. To do this, provide an additional argument when running the program, specifying the name of the CSV file where the results should be saved.
+
+### C++ Version
+
+```bash
+./main data.txt output.csv
+```
+
+### Python Version
+
+```bash
+python3 main.py data.txt output.csv
+```
+
+In this example, the entropy will be calculated and saved in `output.csv` in the following format:
+
+```csv
+Date,Time,FileName,SeedsNumber,Entropy
+2024-08-27,13:22:00,data.txt,3.459
+```
+
+This allows you to keep a record of entropy calculations across multiple files, which can be particularly useful for batch processing or historical analysis.
 
 ## License
 
