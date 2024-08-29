@@ -136,6 +136,31 @@ The Python version of the Entropy Calculator offers several advanced features:
 
 These features make the Python version particularly powerful for complex data analysis tasks.
 
+Sekcję o formacie pliku wejściowego najlepiej dodać przed sekcją [Example Usage](#example-usage) w pliku README. Poniżej znajduje się treść tej sekcji:
+
+## Input File Format
+
+The input file for the Entropy Calculator should contain data entries separated by line breaks. Each line in the file is treated as a separate data value. The tool is flexible and can process various types of data, including:
+
+- **Hexadecimal Numbers:** e.g., `A1`, `FF`, `0C`
+- **Text Strings:** e.g., `HelloWorld`, `TestData`
+- **Numeric Values:** e.g., `12345`, `67890`
+- **Special Characters:** e.g., `!@#$`, `%^&*`
+
+**Note:** The program removes any leading or trailing whitespace from each line before processing. Empty lines are ignored.
+
+### Example of a Valid Input File
+
+```
+A1
+FF
+HelloWorld
+12345
+!@#$
+```
+
+Each line represents a separate data entry that will be included in the entropy calculation. The order and format of the entries can influence the calculated entropy, especially when using advanced options such as unique sequence handling or substring entropy calculations.
+
 ## Example Usage
 
 Suppose you have a file named `data.txt` containing various data entries like this:
