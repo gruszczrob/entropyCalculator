@@ -6,9 +6,12 @@
 
 **Entropy Calculator** is an open-source tool designed to calculate the entropy of data stored in a file. This project is implemented in both Python and C++, providing flexibility and convenience for users who prefer either language. The program is ready to use immediately after compiling (for the C++ version) or executing (for the Python version) and is designed to be simple yet efficient.
 
+The Python version currently offers more advanced functionality, such as calculating entropy for all possible substrings and handling unique value sequences. The C++ version is under active development and will gradually incorporate these advanced features.
+
 ## Table of Contents
 
-- [How It Works](#how-it-works)
+- [What is Entropy?](#what-is-entropy)
+  - [Entropy Calculation](#entropy-calculation)
 - [System Requirements](#system-requirements)
 - [Installation and Usage](#installation-and-usage)
   - [C++ Version](#c-version)
@@ -20,11 +23,43 @@
 - [Author](#author)
 - [Contact](#contact)
 
-## How It Works
+## What is Entropy?
 
-The Entropy Calculator processes a file containing any type of data—hexadecimal numbers, strings, special characters, or numbers in various notations—where each entry is expected to be on a separate line. The program reads these lines, computes the entropy based on the probability distribution of the different values, and then displays the entropy value directly in the terminal. Additionally, the tool provides an option to save the computed entropy to a CSV file, which can be useful for further data analysis or record-keeping.
+Entropy, in the context of information theory, is a measure of the uncertainty or randomness in a dataset. Introduced by Claude Shannon in 1948, entropy quantifies the amount of information contained in a message or, more generally, in any dataset. It is a fundamental concept in fields such as cryptography, data compression, and statistical mechanics.
 
-This tool is particularly useful for analyzing the randomness or information content of data, which can be crucial in fields such as cryptography, data compression, and information theory.
+In simpler terms, if the content of a dataset is highly predictable (e.g., all entries are the same), the entropy is low. Conversely, if the dataset is highly unpredictable (e.g., all entries are unique or randomly distributed), the entropy is high. Entropy provides insight into the complexity and randomness of the data, which is particularly useful when evaluating the strength of cryptographic keys or the efficiency of data compression algorithms.
+
+
+
+
+### Entropy Calculation
+
+The entropy \( H(X) \) of a random variable \( X \) with a set of possible outcomes \( \{x_1, x_2, ..., x_n\} \) and corresponding probabilities \( \{p_1, p_2, ..., p_n\} \) is calculated using the following formula:
+
+\[
+H(X) = -\sum_{i=1}^{n} p(x_i) \log_2 p(x_i)
+\]
+
+Where:
+- \( p(x_i) \) is the probability of occurrence of the outcome \( x_i \).
+- \( \log_2 \) is the logarithm to the base 2.
+
+#### Steps to Calculate Entropy:
+
+1. **Determine the Probability Distribution:**
+   - Identify all unique symbols or values in the dataset.
+   - Calculate the probability \( p(x_i) \) of each unique symbol. This is done by dividing the frequency of each symbol by the total number of symbols in the dataset.
+
+2. **Calculate the Entropy:**
+   - For each unique symbol \( x_i \), compute \( p(x_i) \log_2 p(x_i) \).
+   - Sum all the values obtained in the previous step.
+   - Multiply the sum by \(-1\) to obtain the entropy \( H(X) \).
+  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/dd6b74b5-dc47-41f6-a451-a840f77cf01d" alt="Image" height="200">
+</p>
+
+The result is the entropy value, which quantifies the average amount of information (in bits) produced by the dataset. A higher entropy value indicates greater randomness and unpredictability, whereas a lower value indicates more regularity and predictability in the dataset.
 
 ## System Requirements
 
@@ -74,6 +109,33 @@ python3 main.py [FILE NAME]
 
 Again, replace `[FILE NAME]` with the actual path to your data file.
 
+### Advanced Usage Options (Python Version Only)
+
+The Python version of the Entropy Calculator offers several advanced features:
+
+- **Unique Sequence Handling:**
+  To treat consecutive identical entries in the data file as a single entry, use the `-u` or `--unique` flag.
+
+  ```bash
+  python3 main.py [FILE NAME] -u
+  ```
+
+- **Entropy Calculation for All Possible Substrings:**
+  To calculate the entropy for all possible substrings of a specified length, use the `-c` or `--calculate_all` option followed by the desired substring length.
+
+  ```bash
+  python3 main.py [FILE NAME] -c [LENGTH]
+  ```
+
+- **Saving Results to a File:**
+  To save the results of the entropy calculations to a CSV file, specify the output filename using the `-o` or `--output_filename` option.
+
+  ```bash
+  python3 main.py [FILE NAME] -o [OUTPUT FILE]
+  ```
+
+These features make the Python version particularly powerful for complex data analysis tasks.
+
 ## Example Usage
 
 Suppose you have a file named `data.txt` containing various data entries like this:
@@ -103,14 +165,24 @@ python3 main.py data.txt
 The program will read the `data.txt` file, compute the entropy, and display the result in the terminal. The output might look something like:
 
 ```
-Entropy: 2.32193
+Entropy: 2.321928094887362
 ```
 
 This value represents the amount of randomness or uncertainty in the dataset.
 
+### Advanced Example (Python Version)
+
+To calculate entropy for all possible substrings of length 3 and save the results to a file named `results.csv`:
+
+```bash
+python3 main.py data.txt -c 3 -o results.csv
+```
+
+The program will analyze the substrings, calculate their respective entropies, and save the output in the specified CSV file.
+
 ## Saving Results to CSV
 
-The Entropy Calculator also offers the option to save the computed entropy to a CSV file. To do this, provide an additional argument when running the program, specifying the name of the CSV file where the results should be saved.
+The Entropy Calculator offers the option to save the computed entropy to a CSV file. This can be particularly useful for keeping a record of entropy calculations across multiple files, which can be useful for batch processing or historical analysis.
 
 ### C++ Version
 
@@ -121,17 +193,17 @@ The Entropy Calculator also offers the option to save the computed entropy to a 
 ### Python Version
 
 ```bash
-python3 main.py data.txt output.csv
+python3 main.py data.txt -o output.csv
 ```
 
-In this example, the entropy will be calculated and saved in `output.csv` in the following format:
+The CSV file will be formatted as follows:
 
 ```csv
-Date,Time,FileName,SeedsNumber,Entropy
-2024-08-27,17:08:23,test,5,2.32193
+Date,Time,FileName,SeedsNumber,Position,IfMerge,Entropy
+2024-08-27,13:22:00,data.txt,5,all,FALSE,Entropy: 2.321928094887362
 ```
 
-This allows you to keep a record of entropy calculations across multiple files, which can be particularly useful for batch processing or historical analysis.
+Each row in the CSV file represents an entropy calculation, with details such as the date, time, file name, and specific substring positions.
 
 ## License
 
@@ -140,6 +212,8 @@ This project is licensed under the MIT License. You are free to use, modify, and
 ## Contributing
 
 Contributions to the Entropy Calculator project are welcome! If you find a bug, have a feature request, or want to improve the code, feel free to open an issue or submit a pull request. Please ensure that your contributions align with the project’s goals and that you follow the coding standards outlined in the repository.
+
+**Note:** The C++ version is currently under active development and will gradually incorporate the advanced features already available in the Python version. Contributions to both versions are appreciated.
 
 ## Author
 
